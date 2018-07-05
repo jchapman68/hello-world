@@ -1,0 +1,14 @@
+---
+resources:
+- name: hello-world-git
+  type: git
+  source:
+    uri: https://github.com/jchapman68/hello-world.git
+    branch: master
+
+jobs:
+- name: job-hello-world
+  public: true
+  plan:
+  - get: hello-world-git
+  
