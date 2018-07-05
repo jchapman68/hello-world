@@ -1,4 +1,4 @@
-#https://josh.apps.devtest.onsclofo.uk
+#!/bin/sh
 
 curl -sSf "$URL" | grep "$GREETING"
 

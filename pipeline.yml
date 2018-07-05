@@ -6,15 +6,11 @@ resources:
     uri: https://github.com/jchapman68/hello-world.git
     branch: master
 
-jobs:
-- name: job-hello-world
-  public: true
-  plan:
-  - get: hello-world-git
-  
+jobs: 
 - name: acceptance-test
   public: true
   plan:
+  - get: hello-world-git
   - task: run-acceptance-test
     config:
       platform: linux
@@ -25,8 +21,11 @@ jobs:
       inputs:
         - name: hello-world-git
       
+      #run:
+      #  path: ls
+      
       run:
-        path: acceptancetest.sh
+        path: hello-world-git/acceptancetest.sh
       params:
         URL: https://josh.apps.devtest.onsclofo.uk
         GREETING: 'Hello Joe'
