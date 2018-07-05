@@ -1,5 +1,9 @@
 #!/bin/sh
 
+echo Inputs:
+echo URL: $URL
+echo GREETING: $GREETING
+
 curl -sSf "$URL" | grep "$GREETING"
 
 if [ $? != 0 ] 
