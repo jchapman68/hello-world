@@ -12,3 +12,21 @@ jobs:
   plan:
   - get: hello-world-git
   
+- name: acceptance-test
+  public: true
+  plan:
+  - task: run-acceptance-test
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: { repository: starkandwayne/concourse }
+
+      inputs:
+        - name: hello-world-git
+      
+      run:
+        path: acceptancetest.sh
+      params:
+        URL: https://josh.apps.devtest.onsclofo.uk
+        GREETING: 'Hello Joe'
