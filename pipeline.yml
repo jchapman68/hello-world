@@ -11,6 +11,7 @@ jobs:
   public: true
   plan:
   - get: hello-world-git
+    trigger: true
   - task: run-acceptance-test
     config:
       platform: linux
