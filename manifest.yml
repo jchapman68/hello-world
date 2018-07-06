@@ -1,0 +1,9 @@
+applications:
+- name: hello-world
+  env:
+    GOPACKAGENAME: main
+  instances: 1
+  memory: 32M
+  routes:
+  - route: josh.apps.devtest.onsclofo.uk
+  
