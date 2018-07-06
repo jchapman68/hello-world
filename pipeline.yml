@@ -49,6 +49,7 @@ jobs:
   - put: cf-devtest
     params:
       manifest: hello-world-git/manifest.yml
+      path: hello-world-git
 
 - name: acceptance-test
   public: true
