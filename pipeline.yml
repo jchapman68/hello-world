@@ -6,11 +6,34 @@ resources:
     uri: https://github.com/jchapman68/hello-world.git
     branch: master
 
-jobs: 
+jobs:
+- name: unit-test
+  public: true
+  plan:
+  - get: hello-world-git
+    trigger: true
+  - task: run-unit-test
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: 
+          repository: golang
+          tag: alpine
+
+      inputs:
+        - name: hello-world-git
+           
+      run:
+        path: go
+        args: [test]
+        dir: hello-world-git
+
 - name: acceptance-test
   public: true
   plan:
   - get: hello-world-git
+    passed: [unit-test]
     trigger: true
   - task: run-acceptance-test
     config:
@@ -21,10 +44,7 @@ jobs:
 
       inputs:
         - name: hello-world-git
-      
-      #run:
-      #  path: ls
-      
+         
       run:
         path: hello-world-git/acceptancetest.sh
       params:
