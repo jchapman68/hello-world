@@ -1,7 +1,7 @@
 applications:
 - name: hello-world
   env:
-    GOPACKAGENAME: main
+    GOPACKAGENAME: hello-world
   instances: 1
   memory: 32M
   routes:
