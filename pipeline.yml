@@ -6,6 +6,17 @@ resources:
     uri: https://github.com/jchapman68/hello-world.git
     branch: master
 
+- name: cf-devtest
+  type: cf
+  source:
+    api: https://api.system.devtest.onsclofo.uk
+    username: chapmj
+    password: 9940f0cbdf2d49cba512
+    organization: paas
+    space: josh
+    
+
+
 jobs:
 - name: unit-test
   public: true
@@ -29,11 +40,21 @@ jobs:
         args: [test]
         dir: hello-world-git
 
-- name: acceptance-test
+- name: deploy-app
   public: true
   plan:
   - get: hello-world-git
     passed: [unit-test]
+    trigger: true
+  - put: cf-devtest
+    params:
+      manifest: hello-world-git/manifest.yml
+
+- name: acceptance-test
+  public: true
+  plan:
+  - get: hello-world-git
+    passed: [deploy-app]
     trigger: true
   - task: run-acceptance-test
     config:
