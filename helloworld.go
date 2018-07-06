@@ -10,5 +10,5 @@ func main() {
 }
 
 func greeting() string {
-	return os.Getenv("GREETING")
+	return os.Getenv("GREETINGx")
 }
