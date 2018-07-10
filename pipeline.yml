@@ -9,9 +9,9 @@ resources:
 - name: cf-devtest
   type: cf
   source:
-    api: https://api.system.devtest.onsclofo.uk
-    username: chapmj
-    password: 9940f0cbdf2d49cba512
+    api: ********
+    username: *********
+    password: **********
     organization: paas
     space: josh
     
@@ -70,5 +70,5 @@ jobs:
       run:
         path: hello-world-git/acceptancetest.sh
       params:
-        URL: https://josh.apps.devtest.onsclofo.uk
+        URL: ***********
         GREETING: 'Hello Joe'
