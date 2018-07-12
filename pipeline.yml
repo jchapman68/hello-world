@@ -9,42 +9,41 @@ resources:
 - name: cf-devtest
   type: cf
   source:
-    api: ********
-    username: *********
-    password: **********
+    api: https://api.system.devtest.onsclofo.uk
+    username: ((username))
+    password: ((password))
     organization: paas
     space: josh
     
 
-
 jobs:
-- name: unit-test
-  public: true
-  plan:
-  - get: hello-world-git
-    trigger: true
-  - task: run-unit-test
-    config:
-      platform: linux
-      image_resource:
-        type: docker-image
-        source: 
-          repository: golang
-          tag: alpine
+# - name: unit-test
+#   public: true
+#   plan:
+#   - get: hello-world-git
+#     trigger: true
+#   - task: run-unit-test
+#     config:
+#       platform: linux
+#       image_resource:
+#         type: docker-image
+#         source: 
+#           repository: golang
+#           tag: alpine
 
-      inputs:
-        - name: hello-world-git
+#       inputs:
+#         - name: hello-world-git
            
-      run:
-        path: go
-        args: [test]
-        dir: hello-world-git
+#       run:
+#         path: go
+#         args: [test]
+#         dir: hello-world-git
 
 - name: deploy-app
   public: true
   plan:
   - get: hello-world-git
-    passed: [unit-test]
+    # passed: [unit-test]
     trigger: true
   - put: cf-devtest
     params:
@@ -70,5 +69,5 @@ jobs:
       run:
         path: hello-world-git/acceptancetest.sh
       params:
-        URL: ***********
+        URL: apps.devtest.onsclofo.uk
         GREETING: 'Hello Joe'
