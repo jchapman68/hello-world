@@ -65,6 +65,8 @@ jobs:
     params:
       manifest: hello-world-git/manifest.yml
       path: artifact
+      environment_variables:
+        GREETING: Hello Joe
 
 
 - name: acceptance-test
