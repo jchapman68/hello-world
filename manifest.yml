@@ -1,10 +1,8 @@
 ---
 applications:
   - name: helloworld
-    memory: 256M
+    memory: 30M
     instances: 1
     routes:
     - route: josh.apps.devtest.onsclofo.uk
     buildpack: https://github.com/cloudfoundry/binary-buildpack.git
-    health-check-type: process
-  
