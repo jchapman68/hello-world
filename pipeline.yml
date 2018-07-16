@@ -19,6 +19,7 @@ resources:
 jobs:
 - name: unit-test
   public: true
+  serial_groups: [josh-half-pipe]
   plan:
   - get: hello-world-git
     trigger: true
@@ -41,6 +42,7 @@ jobs:
 
 - name: deploy-app
   public: true
+  serial_groups: [josh-half-pipe]
   plan:
   - get: hello-world-git
     passed: [unit-test]
@@ -71,6 +73,7 @@ jobs:
 
 - name: acceptance-test
   public: true
+  serial_groups: [josh-half-pipe]
   plan:
   - get: hello-world-git
     passed: [deploy-app]
